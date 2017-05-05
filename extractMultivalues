@@ -1,0 +1,19 @@
+
+import arcpy,os,arcgisscripting
+from arcpy import mapping
+os.system('cls')
+gp = arcgisscripting.create(9.3)
+gp.CheckOutExtension("Spatial")
+
+entrada = "D:/Personal/_colaboraciones/_harold/_rasters" 
+gp.workspace = entrada
+
+rasters = gp.ListRasters("", "")
+print rasters
+points = "D:/Personal/_colaboraciones/_harold/points.shp"
+
+for layer in rasters:
+	arcpy.sa.ExtractMultiValuesToPoints(points, layer, 'NONE')
+
+print "Finish"
+  
